@@ -48,8 +48,8 @@ namespace neural
 
                 //LEI - MID
                 double[] inputData = new double[] { 3, 2, 0, 3, 2, 5, 1, 4, 5 };
-
-                Predict(inputData);
+                
+                Predict(inputData, i + 1);
                 i++;
             }
             Console.ReadKey();
@@ -63,7 +63,7 @@ namespace neural
         /// <param name="trainingOutput"></param>
         static void Training(double[] trainingInput, double[] trainingOutput)
         {
-            for (int i = 0; i < 1000; i++)
+            for (int i = 0; i < 10000; i++)
             {
                 nn.PropagateBack(trainingInput, trainingOutput, activationFunction);
             }
@@ -72,12 +72,13 @@ namespace neural
         /// <summary>
         /// Przewidywanie szans osiągnięcia danego rezultatu w danym meczu
         /// </summary>
-        static void Predict(double[] inputData)
+        static void Predict(double[] inputData, int number)
         {
             try
             {
-                Console.WriteLine("Result:");
+                Console.WriteLine("{0}. Result:", number);
                 MatrixHelper.MatrixDisplay(nn.Propagate(inputData));
+                Console.WriteLine();
             }
             catch (Exception ex)
             {
